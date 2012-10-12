@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+
+		<title>Filter JSON Plugin</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="assets/jquery.ba-hashchange.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+	</head>
+	<body>
+		<div class="topbar">
+			<div class="primary">$( '#kapil-kashyap' )</div>
+			<div><a href="mailto:kapil.k@imaginea.com?Subject=Feedback: jQuery paginated drop down widget" target="_blank">kapil.k@imaginea.com</a> / <a href="mailto:kapil.kashyaps@gmail.com?Subject=Feedback: jQuery paginated drop down widget" target="_blank">kapil.kashyaps@gmail.com</a></div>
+		</div>
+		<div id="left-navigation">
+			<div class="content-item">&nbsp;<a href="#home">Home</a></div>
+			<div class="menu-heading">&nbsp;Explore</div>
+			<div class="content-item">&nbsp;<a href="#demo">All features</a></div>
+			<div class="content-item">&nbsp;<a href="#downloads">Downloads</a></div>
+		</div>
+		<div id="content">
+			<iframe id="content-frame" frameborder="0" src="home.html" height="600"></iframe>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( "#content-frame" ).height( $( window ).height() - 100 );
+
+			$(window).bind("hashchange", function(){
+				var hash = location.hash || "#home",
+					resource = hash.substring(1) + ".html";
+
+				$( "#content-frame" ).attr("src", resource);
+				$( ".content-item" ).removeClass("content-item-selected");
+				$( "a" ).removeClass("active");
+				$( "a[href='" + hash + "']" ).addClass("active").parent().addClass("content-item-selected");
+			});
+
+			$( window ).trigger("hashchange");
+		});
+	</script>
+</html>

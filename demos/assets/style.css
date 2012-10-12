@@ -1,0 +1,59 @@
+body { font-family: verdana; font-size: 13px; color: #4F5469; background: #EEEEEE; }
+
+#main {	width: 100%; height: 100%; }
+
+.topbar div { font-style: italic; margin: 5px; }
+.topbar .primary { font-weight: bold; font-size: 16px; }
+#left-navigation { width: 15%; height: 100%; float: left; }
+#menu li { list-style-type: decimal; }
+a { text-decoration: none; color: #4F5469; }
+a.active { color: #808080; }
+
+#content { width: 85%; height: 100%; float: left; }
+#content-frame { border: none; width: 100%; }
+/* border-color: #67AADA */
+.content-item { border-width: 0 0 0 3px; border-style: solid; border-color: #0095FF; margin: 5px 0 5px 10px; }
+.menu-heading { width: 140px; color: #E4E4F0; background-color: #0095FF; margin: 5px 0 5px 10px; }
+.downlaod-heading { color: #E4E4F0; background-color: #0095FF; margin: 10px 0 0 0; padding-left: 5px; }
+.download-link { margin: 5px 0px 5px 20px; }
+.download-link a:hover { text-decoration: underline; }
+.content-item-selected, .content-item:hover { border-left-color: #FF8533; }
+
+table tr th { text-align: left;	padding-left: 3px; }
+.text { font-family: verdana; font-size: 12px; }
+.input-form { width: 100%; }
+.input-row { vertical-align: top; padding: 2px 0; }
+.inputBorder { border: 1px solid #cccccc; }
+.input-label,.input-label-checkbox { width: 200px; color: #000000; font-size: 12px; }
+.input-label { padding: 10px 5px 5px 10px; }
+.checkbox { margin-left: 20px; }
+.property-value-actions { display: inline-block; }
+.property-actions { display: inline-block; }
+.input-field { border: 1px solid #cccccc; font-size: 10px; padding: 5px 0 5px 5px;; }
+.input-row button { background: #DDDDDD; color: #888888; border: 1px solid #888888; cursor: pointer; }
+.input-row button:hover { background: #888888; color: #DDDDDD; border: 1px solid #DDDDDD; cursor: pointer; }
+.textArea { width: 98%; height: 50px; resize: none; }
+.textArea2 { width: 98%; height: 200px; }
+.info { padding: 5px; }
+.floatLeft { float: left; }
+.floatRight { float: right; }
+.popout-icon { background: url("../../images/popout.png") no-repeat center; background-size: 14px; display: inline; margin-left: 8px; cursor: default; }
+
+.clear { clear: both; }
+.marginTB5px { margin: 5px 0; }
+.marginT10px { margin-top: 10px; }
+.marginT15px { margin-top: 15px; }
+.marginL20px { margin-left: 20px; }
+.marginL50px { margin-left: 50px; }
+.marginR50px { margin-right: 50px; }
+.paddingT20px { padding: 20px 0 0 0; }
+.x-inline-block { display: inline-block; zoom: 1; *display: inline; _height: 30px; }
+.width250px { width: 250px; }
+.mandatory { color: #FF0000; margin: 2px; }
+
+.header { font-size: 14px; font-weight: bold; }
+.x-notifications { color: #5fa4a0;}
+/*.explanation {}*/
+/*.demo,.sample-code {}*/
+/*.separator-horizontal {}*/
+/*.separator-vertical {}*/
