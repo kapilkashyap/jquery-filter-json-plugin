@@ -20,6 +20,7 @@ a.active { color: #808080; }
 .content-item-selected, .content-item:hover { border-left-color: #FF8533; }
 
 table tr th { text-align: left;	padding-left: 3px; }
+table tr th.property-heading { color: #E4E4F0; background-color: #0095FF; padding-right: 5px; font-weight: normal; }
 .text { font-family: verdana; font-size: 12px; }
 .input-form { width: 100%; }
 .input-row { vertical-align: top; padding: 2px 0; }
