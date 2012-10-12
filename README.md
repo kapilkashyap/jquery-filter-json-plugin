@@ -9,7 +9,7 @@ matched values or the parent object of the matched values. You even have the opt
 Below is a basic usage:
 ````javascript
 $.fn.filterJson({ json object }, {
-                        property: "name",
+                        property: ["prop1", "prop2", ... n],
                         wrapper: true,
                         value: "user one",
 	                    checkContains: false,
@@ -41,8 +41,8 @@ Before digging into each property of the plugin lets describe our sample JSON.
 }
 ````
 
-* property (mandatory, default is null): This options takes the value of the property that you need to filter the JSON with. For the above sample JSON we can have three properties
-id, name and email.
+* property (mandatory, default is null): This options takes an array of the property or properties that you need to filter the JSON with. For the above sample JSON we can have three properties
+id, name and email. So you can have this value set as ["name"] or ["name", "email"]
 
 * wrapper (optional, default is false): If set to true, it will return an array of the parent object of the matched property else will return an array of value itself.
 For instance if we are filtering the above sample JSON with 'name' property and wrapper is set to true, then an array of all the Objects which 
