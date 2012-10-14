@@ -64,7 +64,8 @@ This options takes precedence over checkContains if it is set to true.
 
 # Known Issues
 
-For this plugin to work in IE7 and below, you will have to include JSON2
+For this plugin to work in IE7 and below, you will have to include JSON2.
+You can use: http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js
 
 # Licence
 
