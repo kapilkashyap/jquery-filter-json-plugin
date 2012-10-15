@@ -8,7 +8,7 @@ matched values or the parent object of the matched values. You even have the opt
 
 Below is a basic usage:
 ````javascript
-$.fn.filterJson({ json object }, {
+$.fn.filterJSON({ json object }, {
                         property: ["prop1", "prop2", ... n],
                         wrapper: true,
                         value: "user one",

@@ -11,7 +11,7 @@
  */
 (function($) {
 	$.extend($.fn, {
-		filterJson: function( json, _config ) {
+		filterJSON: function( json, _config ) {
 			var config = {
 					property: null,
 					value: "",
@@ -21,10 +21,10 @@
 					matchCase: false,
 					avoidDuplicates: false
 				},
-				filterJsonLoop = function(json, config) {
+				filterJSONLoop = function(json, config) {
 					var errorMsg = null;
 					if($.isEmptyObject( config.property ) || !config.property[0]) {
-						errorMsg = "config.property is required to filter the json object.";
+						errorMsg = "config.property is required to filter the JSON object.";
 					}
 					if(!$.isEmptyObject(errorMsg)) {
 						if(window.console) {
@@ -47,12 +47,12 @@
 										
 										if(config.avoidDuplicates) {
 											// avoiding duplicate objects in case of multiple property check.
-											if($.inArray(_value, ret.filteredJson) == -1) {
-												ret.filteredJson.push( _value );
+											if($.inArray(_value, ret.filteredJSON) == -1) {
+												ret.filteredJSON.push( _value );
 											}
 										}
 										else {
-											ret.filteredJson.push( _value );
+											ret.filteredJSON.push( _value );
 										}
 									};
 
@@ -110,7 +110,7 @@
 											}
 											else if(type === "[object Object]") {
 												$.extend(internalConfig, config, {value: valueToCompare});
-												filterJsonLoop(originalValue, internalConfig);
+												filterJSONLoop(originalValue, internalConfig);
 											}
 										};
 
@@ -120,14 +120,14 @@
 									constructReturnObject(json, j);
 								}
 							}
-							filterJsonLoop(j, config);
+							filterJSONLoop(j, config);
 						});
 					}
 					return ret;
 				},
-				ret = {filteredJson: []},
+				ret = {filteredJSON: []},
 				returnObject = null,
-				filteredJson = null,
+				filteredJSON = null,
 				prop = null;
 
 			// extend the default config with the ones passed in by the user.
@@ -152,13 +152,13 @@
 					&& _config.avoidDuplicates == undefined) {
 				config.avoidDuplicates = true;
 			}
-			returnObject = filterJsonLoop(json, config);
+			returnObject = filterJSONLoop(json, config);
 
-			if(returnObject && returnObject.filteredJson) {
-				filteredJson = returnObject.filteredJson.length > 0 ? returnObject.filteredJson : returnObject.filteredJson[0];
+			if(returnObject && returnObject.filteredJSON) {
+				filteredJSON = returnObject.filteredJSON.length > 0 ? returnObject.filteredJSON : returnObject.filteredJSON[0];
 			}
 
-			return $(filteredJson);
+			return $(filteredJSON);
 		}
 	});
 })(jQuery);
