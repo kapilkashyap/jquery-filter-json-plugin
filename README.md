@@ -18,7 +18,7 @@ $.fn.filterJSON({ json object }, {
 	                    avoidDuplicates: true
                     });
 ````
-# Plugin Properties Explained
+### Plugin Properties Explained
 Before digging into each property of the plugin lets describe our sample JSON.
 ````javascript
 {
@@ -62,13 +62,13 @@ This options takes precedence over checkContains if it is set to true.
 
 * avoidDuplicates (optional, default is false): If set to true will avoid duplicate objects.
 
-# Known Issues
+### Known Issues
 
 For this plugin to work in IE7 and below, you will have to include JSON2.
 
 You can use: http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js
 
-# Licence
+### Licence
 
 Copyright (c) 2012 Kapil Kashyap.
 Dual licensed under MIT License and GPL License.
