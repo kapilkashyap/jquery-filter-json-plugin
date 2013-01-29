@@ -57,7 +57,8 @@
 									};
 
 								if(config.value) {
-									var internalConfig = {},
+									var valueArray = config.value.length ? config.value : [config.value],
+										internalConfig = {},
 										type = Object.prototype.toString.call( j ),
 										innerComparo = function(type, originalValue, valueToCompare) {
 											if(type === "[object String]") {
@@ -114,7 +115,9 @@
 											}
 										};
 
-									innerComparo(type, j, config.value);
+									for(k in valueArray) {
+										innerComparo(type, j, valueArray[k]);
+									}
 								}
 								else {
 									constructReturnObject(json, j);
