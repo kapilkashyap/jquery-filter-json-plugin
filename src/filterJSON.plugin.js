@@ -57,7 +57,7 @@
 									};
 
 								if(config.value) {
-									var valueArray = config.value.length ? config.value : [config.value],
+									var valueArray = $.isArray(config.value) ? config.value : [config.value],
 										internalConfig = {},
 										type = Object.prototype.toString.call( j ),
 										innerComparo = function(type, originalValue, valueToCompare) {

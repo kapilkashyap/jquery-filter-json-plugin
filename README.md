@@ -50,7 +50,7 @@ have the 'name'property will be returned.
 If the wrapper is set to false, then an array of only the values of the property will be returned. For the above sample JSON
 ["User One", "User Two", "User Three"] would be returned.
 
-* value (optional, default is ""): An optional value passed to be matched with the value of the matched property value.
+* value (optional): An optional value passed in as a string (for a single value match) or as an array to check the matched property value against multiple values.
 
 * checkContains (optional, default is false): Setting this option to true will check if the matched property's value contains the passed in value. However, passing a value becomes mandatory for this to work.
 This option will be considered only if it is true and startsWith is not set to true.
