@@ -6,7 +6,7 @@
 		<title>jQuery Filter JSON Plugin</title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-		<script type="text/javascript" src="../src/filterJSON.plugin.min.js"></script>
+		<script type="text/javascript" src="../src/filterJSON.plugin.js"></script>
 		<script type="text/javascript" src="assets/sample.json"></script>
 		<link rel="stylesheet" type="text/css" href="assets/style.css" />
 	</head>
@@ -23,6 +23,10 @@
 						<tr>
 							<td>&nbsp;</td>
 							<td><input type="radio" name="sample-select" value="sample2">Sample2</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><input type="radio" name="sample-select" value="sample3">Sample3</td>
 						</tr>
 					</table>
 				</td>
@@ -91,7 +95,7 @@
 			});
 			
 			// selecting the first json sample
-			$( ":input[name='sample-select']:first" ).click();
+			$( ":input[name='sample-select']:last" ).click();
 			
 			$( "#filterJSON" ).click(function() {
 				var startTime = new Date().getTime(),
