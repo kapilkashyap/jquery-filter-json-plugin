@@ -1,0 +1,32 @@
+{
+    "name": "filterJSON",
+    "title": "jQuery Filter JSON Plugin",
+    "description": "A jQuery utility that allows you to filter a JSON based on properties.",
+    "keywords": [
+        "json",
+        "filter"
+    ],
+    "version": "1.0",
+    "author": {
+        "name": "Kapil Kashyap",
+        "email" : "kapil.kashyaps@gmail.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://raw.github.com/kapilkashyap/jquery-filter-json-plugin/master/MIT-LICENCE"
+        },
+        {
+            "type": "GPL",
+            "url": "https://raw.github.com/kapilkashyap/jquery-filter-json-plugin/master/GPL-LICENCE"
+        }
+    ],
+    "bugs": "https://github.com/kapilkashyap/jquery-filter-json-plugin/issues",
+    "homepage": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
+    "docs": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
+    "download": "https://github.com/kapilkashyap/jquery-filter-json-plugin",
+    "dependencies": {
+        "jquery": ">=1.6",
+        "JSON2": "For this plugin to work in IE7 and below, you will have to include JSON2."
+    }
+}
