@@ -26,7 +26,6 @@
     "docs": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
     "download": "https://github.com/kapilkashyap/jquery-filter-json-plugin",
     "dependencies": {
-        "jquery": ">=1.6",
-        "JSON": "For this plugin to work in IE7 and below, you will have to include JSON2."
+        "jquery": ">=1.6"
     }
 }
