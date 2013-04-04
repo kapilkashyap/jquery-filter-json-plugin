@@ -6,7 +6,7 @@
         "json",
         "filter"
     ],
-    "version": "1.0",
+    "version": "1.0.0",
     "author": {
         "name": "Kapil Kashyap",
         "email" : "kapil.kashyaps@gmail.com"
@@ -25,8 +25,12 @@
     "homepage": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
     "docs": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
     "download": "https://github.com/kapilkashyap/jquery-filter-json-plugin",
-    "dependencies": {
-        "jquery": ">=1.6",
-        "JSON2": "For this plugin to work in IE7 and below, you will have to include JSON2."
-    }
+    "dependencies": [
+        {
+            "jquery": ">=1.6"
+        },
+        {
+            "JSON2": "For this plugin to work in IE7 and below, you will have to include JSON2."
+        }
+    ]
 }
