@@ -22,8 +22,8 @@
         }
     ],
     "bugs": "https://github.com/kapilkashyap/jquery-filter-json-plugin/issues",
-    "homepage": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
-    "docs": "https://kapilkashyap.github.com/jquery-filter-json-plugin",
+    "homepage": "http://kapilkashyap.github.com/jquery-filter-json-plugin",
+    "docs": "http://kapilkashyap.github.com/jquery-filter-json-plugin",
     "download": "https://github.com/kapilkashyap/jquery-filter-json-plugin",
     "dependencies": {
         "jquery": ">=1.6"
