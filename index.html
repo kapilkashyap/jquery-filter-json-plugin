@@ -26,6 +26,8 @@
 			.checkbox { margin-left: 20px; }
 			.property-value-actions { display: inline-block; }
 			.x-inline-block { display: inline-block; zoom: 1; *display: inline; _height: 30px; }
+			.x-float-right { float: right; }
+			.x-width-10px { width: 10px; }
 			.x-button { background: #DDDDDD; color: #373737; border: 1px solid #373737; cursor: pointer; }
 			.x-button:hover { background: #373737; color: #DDDDDD; border: 1px solid #DDDDDD; cursor: pointer; }
     	</style>
@@ -57,7 +59,7 @@
 				<p>However, you can filter the JSON based on various parameters such as startWith or checkContains, matchCase and can either choose to return the 
 				matched values or the parent object of the matched values. You even have the option of avoiding duplicates if any.</p>
 				
-				<p>Below is a basic usage: (<a href="#demo" onclick="javascript:void(0);">Demo</a>)</p>
+				<h3 id="usage">Plugin Usage<div class="x-inline-block x-width-10px">&nbsp;</div><span style="font-size: 14px;">(<a href="#demo" onclick="javascript:void(0);">Demo</a>)</span></h3>
 
 <div class="highlight">
 <pre><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">filterJSON</span><span class="p">({</span> <span class="nx">json</span> <span class="nx">object</span> <span class="p">},</span> <span class="p">{</span>
@@ -72,7 +74,7 @@
 </pre>
 </div>
 
-				<h3>Plugin Properties Explained</h3>
+				<h3 id="docs">Plugin Properties Explained<div class="x-inline-block x-width-10px">&nbsp;</div><span style="font-size: 14px;">(<a href="#demo" onclick="javascript:void(0);">Demo</a>)</span></h3>
 
 				<p>Before digging into each property of the plugin lets describe our sample JSON.</p>
 
@@ -170,8 +172,13 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 						<td>If set to true will avoid duplicate objects.</td>
 					</tr>
 				</table>
-	<br/>
-				<table id="demo" class="input-form">
+<br/>
+				<div id="demo">
+					<div class="x-float-right x-inline-block"><a href="#docs" onclick="javascript:void(0);">Docs</a></div>
+					<div class="x-float-right x-inline-block x-width-10px">&nbsp;</div>
+					<div class="x-float-right x-inline-block"><a href="#usage" onclick="javascript:void(0);">Usage</a></div>
+				</div>	
+				<table class="input-form">
 					<tr>
 						<th>Demo</th>
 						<th>&nbsp;</th>
