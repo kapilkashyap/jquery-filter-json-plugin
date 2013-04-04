@@ -1,60 +1,80 @@
 <!DOCTYPE html>
 <html>
+	<head>
+    	<meta charset='utf-8' />
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    	<meta name="description" content="jquery-filter-json-plugin : A jQuery utility that allows you to filter a JSON based on properties." />
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Jquery-filter-json-plugin : A jQuery utility that allows you to filter a JSON based on properties" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    	<title>jquery-filter-json-plugin</title>
+    	
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+		<script type="text/javascript" src="https://raw.github.com/kapilkashyap/jquery-filter-json-plugin/master/src/filterJSON.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/sample.json"></script>
+    	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Jquery-filter-json-plugin</title>
-  </head>
+		
+		<style type="text/css">
+			tbody .vertical-align-top { vertical-align: top; }
+    		span.required { color: red; }
+			.borderless { border: none; }
+    		.input-form { width: 100%; }
+    		.textArea { width: 98%; height: 200px; }
+			.input-label,.input-label-checkbox { width: 200px; color: #000000; }
+			.input-label { vertical-align: top; padding: 10px 5px 5px 10px; }
+			.checkbox { margin-left: 20px; }
+			.property-value-actions { display: inline-block; }
+			.x-inline-block { display: inline-block; zoom: 1; *display: inline; _height: 30px; }
+			.x-button { background: #DDDDDD; color: #373737; border: 1px solid #373737; cursor: pointer; }
+			.x-button:hover { background: #373737; color: #DDDDDD; border: 1px solid #DDDDDD; cursor: pointer; }
+    	</style>
+  	</head>
 
-  <body>
-
+	<body>
     <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/kapilkashyap/jquery-filter-json-plugin">View on GitHub</a>
+	    <div id="header_wrap" class="outer">
+			<header class="inner">
+	        	<a id="forkme_banner" href="https://github.com/kapilkashyap/jquery-filter-json-plugin">View on GitHub</a>
 
-          <h1 id="project_title">Jquery-filter-json-plugin</h1>
-          <h2 id="project_tagline">A jQuery utility that allows you to filter a JSON based on properties</h2>
+	          	<h1 id="project_title">jquery-filter-json-plugin</h1>
+	          	<h2 id="project_tagline">A jQuery utility that allows you to filter a JSON based on properties.</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/kapilkashyap/jquery-filter-json-plugin/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/kapilkashyap/jquery-filter-json-plugin/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+				<section id="downloads">
+	            	<a class="zip_download_link" href="https://github.com/kapilkashyap/jquery-filter-json-plugin/zipball/master">Download this project as a .zip file</a>
+	              	<a class="tar_download_link" href="https://github.com/kapilkashyap/jquery-filter-json-plugin/tarball/master">Download this project as a tar.gz file</a>
+	            </section>
+	        </header>
+	    </div>
 
     <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>jQuery Filter JSON</h1>
+    	<div id="main_content_wrap" class="outer">
+      		<section id="main_content" class="inner">
+        		<h1>jQuery Filter JSON</h1>
+				<p>This jQuery plugin is a utility that allows you to filter a JSON based on properties. You can also have a property/value match and only those
+				property values that match the passed in value will be returned.</p>
+				
+				<p>However, you can filter the JSON based on various parameters such as startWith or checkContains, matchCase and can either choose to return the 
+				matched values or the parent object of the matched values. You even have the option of avoiding duplicates if any.</p>
+				
+				<p>Below is a basic usage: (<a href="#demo" onclick="javascript:void(0);">Demo</a>)</p>
 
-<p>This jQuery plugin is a utility that allows you to filter a JSON based on properties. You can also have a property/value match and only those
-property values that match the passed in value will be returned.</p>
+<div class="highlight">
+<pre><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">filterJSON</span><span class="p">({</span> <span class="nx">json</span> <span class="nx">object</span> <span class="p">},</span> <span class="p">{</span>
+	<span class="nx">property</span><span class="o">:</span> <span class="p">[</span><span class="s2">"prop1"</span><span class="p">,</span> <span class="s2">"prop2"</span><span class="p">,</span> <span class="p">...</span> <span class="nx">n</span><span class="p">],</span> <span class="nx">//</span> <span class="nx required">mandatory</span>
+	<span class="nx">wrapper</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">value</span><span class="o">:</span> <span class="s2">"user one"</span><span class="p">,</span>
+	<span class="nx">checkContains</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">startsWith</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">matchCase</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">avoidDuplicates</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre>
+</div>
 
-<p>However, you can filter the JSON based on various parameters such as startWith or checkContains, matchCase and can either choose to return the 
-matched values or the parent object of the matched values. You even have the option of avoiding duplicates if any.</p>
+				<h3>Plugin Properties Explained</h3>
 
-<p>Below is a basic usage:</p>
-
-<div class="highlight"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">filterJSON</span><span class="p">({</span> <span class="nx">json</span> <span class="nx">object</span> <span class="p">},</span> <span class="p">{</span>
-                        <span class="nx">property</span><span class="o">:</span> <span class="p">[</span><span class="s2">"prop1"</span><span class="p">,</span> <span class="s2">"prop2"</span><span class="p">,</span> <span class="p">...</span> <span class="nx">n</span><span class="p">],</span>
-                        <span class="nx">wrapper</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">value</span><span class="o">:</span> <span class="s2">"user one"</span><span class="p">,</span>
-                        <span class="nx">checkContains</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                        <span class="nx">startsWith</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                        <span class="nx">avoidDuplicates</span><span class="o">:</span> <span class="kc">true</span>
-                    <span class="p">});</span>
-</pre></div>
-
-<h3>Plugin Properties Explained</h3>
-
-<p>Before digging into each property of the plugin lets describe our sample JSON.</p>
+				<p>Before digging into each property of the plugin lets describe our sample JSON.</p>
 
 <div class="highlight"><pre><span class="p">{</span>
     <span class="p">{</span>
@@ -75,7 +95,7 @@ matched values or the parent object of the matched values. You even have the opt
     <span class="p">.</span>
 <span class="p">}</span>
 </pre></div>
-
+<!--
 <ul>
 <li><p>property (mandatory, default is null): This options takes an array of the property or properties that you need to filter the JSON with. For the above sample JSON we can have three properties
 id, name and email. So you can have this value set as ["name"] or ["name", "email"]</p></li>
@@ -91,28 +111,214 @@ This option will be considered only if it is true and startsWith is not set to t
 This options takes precedence over checkContains if it is set to true.</p></li>
 <li><p>matchCase (optional, default is false): If set to true will perform case-sensitive search of values.</p></li>
 <li><p>avoidDuplicates (optional, default is false): If set to true will avoid duplicate objects.</p></li>
-</ul><h3>Known Issues</h3>
+</ul>
+-->
+<br/>
+				<table>
+					<tr>
+						<th>Property</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>property&nbsp;<span class="required">*</span></td>
+						<td>array</td>
+						<td>null</td>
+						<td>This options takes a property or an array of properties that you need to filter the JSON with. For the above sample JSON we have three properties, namely:
+							id, name and email. So you can set this value as ["name"] or ["name", "email"]</td>
+					</tr>
+					<tr>
+						<td>wrapper</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>If set to true, will return an array of objects whose property has matched, otherwise will return an array of value itself.
+							For instance if we are filtering the above sample JSON with 'name' and wrapper is set to true, then an array of all the objects which 
+							have the 'name' property will be returned. If the wrapper is set to false, then an array of only the values of the property will be returned. For the above sample JSON
+							["User One", "User Two", "User Three"] would be returned.</td>
+					</tr>
+					<tr>
+						<td>value</td>
+						<td>string/array</td>
+						<td>[V1...Vn]</td>
+						<td>An optional value passed in as a string (for a single value match) or as an array to check the matched property value against multiple values.</td>
+					</tr>
+					<tr>
+						<td>checkContains</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>Setting this option to true will check if the matched property's value contains the passed in value. However, passing a value becomes mandatory for this to work.
+							This option will be considered only if it is true and startsWith is not set to true.</td>
+					</tr>
+					<tr>
+						<td>startsWith</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>Setting this option to true will check if the matched property's value starts with the passed in value. However, passing a value becomes mandatory for this to work.
+							This options takes precedence over checkContains if it is set to true.</td>
+					</tr>
+					<tr>
+						<td>matchCase</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>If set to true will perform case-sensitive search of values.</td>
+					</tr>
+					<tr>
+						<td>avoidDuplicates</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>If set to true will avoid duplicate objects.</td>
+					</tr>
+				</table>
+	<br/>
+				<table id="demo" class="input-form">
+					<tr>
+						<th>Demo</th>
+						<th>&nbsp;</th>
+					</tr>
+					<tr>
+						<td class="input-label vertical-align-top">
+							JSON:
+							<table class="borderless">
+								<tr>
+									<td class="borderless">Use:</td>
+									<td class="borderless"><input type="radio" name="sample-select" value="sample1">Sample1</td>
+								</tr>
+								<tr>
+									<td class="borderless">&nbsp;</td>
+									<td class="borderless"><input type="radio" name="sample-select" value="sample2">Sample2</td>
+								</tr>
+								<tr>
+									<td class="borderless">&nbsp;</td>
+									<td class="borderless"><input type="radio" name="sample-select" value="sample3">Sample3</td>
+								</tr>
+							</table>
+						</td>
+						<td class="input-field">
+							<textarea id="json" class="textArea" name="json">
+							</textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="input-label">Property:</td>
+						<td class="input-field">
+							<input type="text" id="property" name="property" value="email" />
+							<div class="property-actions x-inline-block">
+								<input type="checkbox" id="avoidDuplicates" class="checkbox" name="avoidDuplicates" value="" checked="checked"/>
+								<span class="input-label-checkbox">Avoid Duplicates</span>
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="input-label">Return Parent Object:</td>
+						<td class="input-field">
+							<input type="checkbox" id="wrapper" name="wrapper" value=""/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="input-label">Property Value:</td>
+						<td class="input-field">
+							<input type="text" id="propertyValue" name="propertyValue" value="" />
+							<div class="property-value-actions x-inline-block">
+								<input type="radio" id="isStartsWith" class="checkbox" name="searchcriteria" value="" checked="checked"/>
+								<span class="input-label-checkbox">Starts With</span>
+								<input type="radio" id="isCheckContains" class="checkbox" name="searchcriteria" value="" />
+								<span class="input-label-checkbox">Check Contains</span>
+								<input type="checkbox" id="isMatchCase" class="checkbox" name="isMatchCase" value="" />
+								<span class="input-label-checkbox">Match Case</span>
+							</div>
+						</td>
+					</tr>
+					
+					<tr class="input-row vertical-align-top">
+						<td class="input-label">Filtered JSON:</td>
+						<td class="input-field">
+							<textarea id="filteredJson" class="textArea" readonly/></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="borderless">
+							<button id="filterJSON" name="Apply" class="x-button">Filter JSON</button>
+							<span id="info"></span>
+						</td>
+					</tr>
+				</table>
 
-<p>For this plugin to work in IE7 and below, you will have to include JSON2.</p>
-
-<p>You can use: <a href="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js">http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js</a></p>
-
-<h3>Licence</h3>
-
-<p>Copyright (c) 2012 Kapil Kashyap.
-Dual licensed under MIT License and GPL License.</p>
-      </section>
+				<h3>Known Issues</h3>
+				<p>For this plugin to work in IE7 and below, you will have to include JSON2.</p>
+				<p>You can use: <a href="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js">http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js</a></p>
+				<h3>Licence</h3>
+				<p>Copyright (c) 2012 Kapil Kashyap. Dual licensed under MIT License and GPL License.</p>
+      		</section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Jquery-filter-json-plugin maintained by <a href="https://github.com/kapilkashyap">kapilkashyap</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
+      	<footer class="inner">
+        	<p class="copyright">jquery-filter-json-plugin maintained by <a href="https://github.com/kapilkashyap">kapilkashyap</a></p>
+        	<p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      	</footer>
     </div>
+  	</body>
 
-    
+	<script>
+		var $ = jQuery.noConflict();
+		
+		$( document ).ready(function() {
+			$( ":input[name='sample-select']" ).click(function(e) {
+				$( "#json" ).val( JSON.stringify( sample[$( this ).val()] ) );
+			});
+			
+			// selecting the first json sample
+			$( ":input[name='sample-select']:last" ).click();
+			
+			$( "#filterJSON" ).click(function() {
+				var startTime = new Date().getTime(),
+					json = $.parseJSON( $( "#json" ).val() ),
+					property = $( "#property" ).val(),
+					avoidDuplicates = $( "#avoidDuplicates" ).is( ":checked" ),
+					wrapper = $( "#wrapper" ).is( ":checked" ),
+					propertyValue = $( "#propertyValue" ).val(),
+					startsWith = $( "#isStartsWith" ).is( ":checked" ),
+					checkContains = $( "#isCheckContains" ).is( ":checked" ),
+					matchCase = $( "#isMatchCase" ).is( ":checked" );
+					
+				$( "#filteredJson" ).val( "" );
+				
+				try {
+					var config = {
+							property: property.split(","),
+							wrapper: wrapper,
+							value: propertyValue.split(","),
+							checkContains: checkContains,
+							startsWith: startsWith,
+							matchCase: matchCase,
+							avoidDuplicates: avoidDuplicates
+						},
+						o = $.fn.filterJSON(json, config).toArray();
 
-  </body>
+					$( "#filteredJson" ).val( (o != null && o.length > 0) ? JSON.stringify( o ) : "" );
+					$( "#info" ).html("Returned " + o.length + " results in " + (new Date().getTime() - startTime) + " milliseconds.");
+				}
+				catch( e ) {
+					console.error( e.message );
+				}
+			});
+			
+			$( "#propertyValue" ).keyup();
+		});
+		
+		$( "#propertyValue" ).keyup(function() {
+			if($.trim( $( this ).val() )) {
+				$( ".property-value-actions" ).show();
+			}
+			else {
+				$( ".property-value-actions" ).find( "input:checkbox" ).attr("checked", false);
+				$( ".property-value-actions" ).hide();
+			}
+		});
+	</script>
 </html>
