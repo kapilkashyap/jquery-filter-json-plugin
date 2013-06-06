@@ -10,7 +10,20 @@
     	
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-		<script type="text/javascript" src="https://raw.github.com/kapilkashyap/jquery-filter-json-plugin/master/src/filterJSON.plugin.js"></script>
+		<script type="text/javascript">
+		/*
+		 * jQuery Filter JSON Plugin
+		 * Copyright (c) 2012 Kapil Kashyap
+		 *
+		 * Depends:
+		 *   - jQuery 1.6+
+		 *
+		 * Dual licensed under the MIT and GPL licenses:
+		 *   - http://www.opensource.org/licenses/mit-license.php
+		 *   - http://www.gnu.org/licenses/gpl.html
+		 */
+		(function(e){e.extend(e.fn,{filterJSON:function(t,n){var r={property:null,value:"",wrapper:false,checkContains:false,startsWith:false,matchCase:false,avoidDuplicates:false},i=function(t,n){var r=null;if(e.isEmptyObject(n.property)||!n.property[0]){r="config.property is required to filter the JSON object."}if(!e.isEmptyObject(r)){if(window.console){console.error?console.error(r):console.log(r)}else{alert(r)}return}if(t&&typeof t=="object"){e.each(t,function(r,o){if(e.inArray(r,n.property)!=-1){var u=function(t,r){var i=n.wrapper?t:r;if(n.avoidDuplicates){if(e.inArray(i,s.filteredJSON)==-1){s.filteredJSON.push(i)}}else{s.filteredJSON.push(i)}};if(n.value){var a=e.isArray(n.value)?n.value:[n.value],f={},l=Object.prototype.toString.call(o),c=function(r,s,o){if(r==="[object String]"){var a=s.toLowerCase(),l=o.toLowerCase();if(!n.matchCase){if(a==l||!n.startsWith&&n.checkContains&&a.indexOf(l)!=-1||n.startsWith&&a.indexOf(l)==0){u(t,s)}}else{if(s==o||!n.startsWith&&n.checkContains&&s.indexOf(o)!=-1||n.startsWith&&s.indexOf(o)==0){u(t,s)}}}else if(r==="[object Number]"){if(s===parseInt(o)||s===parseFloat(o)){u(t,s)}}else if(r==="[object Boolean]"){var h=false;if(Object.prototype.toString.call(o)==="[object String]"){if(o.toLowerCase()=="true"){h=true}}if(s===h){u(t,s)}}else if(r==="[object Array]"){if(s.length>0){for(k in s){c(Object.prototype.toString.call(s[k]),s[k],o)}}}else if(r==="[object Object]"){e.extend(f,n,{value:o});i(s,f)}};for(k in a){c(l,o,a[k])}}else{u(t,o)}}i(o,n)})}return s},s={filteredJSON:[]},o=null,u=null,a=null;e.extend(r,n);a=r.property;if(Object.prototype.toString.call(a)==="[object String]"){a=a.replace(/\s/g,"");r.property=a.split(",")}a=null;if(r.wrapper&&r.property&&r.property.length>1&&n.avoidDuplicates==undefined){r.avoidDuplicates=true}o=i(t,r);if(o&&o.filteredJSON){u=o.filteredJSON.length>0?o.filteredJSON:o.filteredJSON[0]}return e(u)}})})(jQuery)
+		</script>
 		<script type="text/javascript" src="assets/sample.json"></script>
     	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
