@@ -242,6 +242,12 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 						<td class="input-label">Property Value:</td>
 						<td class="input-field">
 							<input type="text" id="propertyValue" name="propertyValue" value="" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="input-label">Settings:</td>
+						<td class="input-field">
 							<div class="property-value-actions x-inline-block">
 								<input type="radio" id="isStartsWith" class="checkbox" name="searchcriteria" value="" checked="checked"/>
 								<span class="input-label-checkbox">Starts With</span>
@@ -301,7 +307,7 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 					property = $( "#property" ).val(),
 					avoidDuplicates = $( "#avoidDuplicates" ).is( ":checked" ),
 					wrapper = $( "#wrapper" ).is( ":checked" ),
-					propertyValue = $( "#propertyValue" ).val(),
+					propertyValue = $( "#propertyValue" ).val().trim(),
 					startsWith = $( "#isStartsWith" ).is( ":checked" ),
 					checkContains = $( "#isCheckContains" ).is( ":checked" ),
 					matchCase = $( "#isMatchCase" ).is( ":checked" );
@@ -312,7 +318,7 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 					var config = {
 							property: property.split(","),
 							wrapper: wrapper,
-							value: propertyValue.split(","),
+							value: propertyValue === "" ? null : propertyValue.split(","),
 							checkContains: checkContains,
 							startsWith: startsWith,
 							matchCase: matchCase,
@@ -330,7 +336,7 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 			
 			$( "#propertyValue" ).keyup();
 		});
-		
+		/*
 		$( "#propertyValue" ).keyup(function() {
 			if($.trim( $( this ).val() )) {
 				$( ".property-value-actions" ).show();
@@ -340,6 +346,7 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 				$( ".property-value-actions" ).hide();
 			}
 		});
+		*/
 	</script>
 	
 	<script type="text/javascript">
