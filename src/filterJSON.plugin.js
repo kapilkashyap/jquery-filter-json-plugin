@@ -115,8 +115,19 @@
 											}
 										};
 
-									for(k in valueArray) {
-										innerComparo(type, j, valueArray[k]);
+									// forEach iterates over enumerable properties
+									if(valueArray.forEach) {
+										valueArray.forEach(function(element, index, array) {
+											innerComparo(type, j, element);
+										});
+									}
+									else {
+										// fall-back for IE8
+										for(k in valueArray) {
+											if(valueArray.hasOwnProperty(k)) {
+												innerComparo(type, j, valueArray[k]);
+											}
+										}
 									}
 								}
 								else {
