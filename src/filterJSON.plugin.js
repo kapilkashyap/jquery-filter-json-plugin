@@ -12,14 +12,42 @@
 (function($) {
 	$.extend($.fn, {
 		filterJSON: function( json, _config ) {
-			var config = {
-					property: null,
-					value: "",
-					wrapper: false,
-					checkContains: false,
-					startsWith: false,
-					matchCase: false,
-					avoidDuplicates: false
+			var typeMap = {
+					"STRING": "[object String]",
+					"NUMBER": "[object Number]",
+					"BOOLEAN": "[object Boolean]",
+					"ARRAY": "[object Array]",
+					"OBJECT": "[object Object]",
+					"FUNCTION": "[object Function]"
+				},
+				getObjectType = function(o) {
+					return Object.prototype.toString.call( o );
+				},
+				config = {
+					property: null, // property used to filter the objects, required.
+					value: "", // optional, provide this if we want to search for a particular value
+					wrapper: false, // returning the parent object is turned off by default
+					checkContains: false, // is required only when we are matching against a value, will match value with in the string
+					startsWith: false, // is required only when we are matching against a value, will match value at the beginning of the string
+					matchCase: false, // case insensitive matching is on by default
+					avoidDuplicates: false, // avoid duplicates is off by default
+					sort: false, // sorting is off by default
+					sortOrder: "asc", // "desc" is the other value
+					sortProperty: null, // optional, if this isn't provided then the property provided in the config would be used.
+					comparator: function(a, b) { // optional, default comparator function for sorting
+						var order = (config.sortOrder !== "asc") ? -1 : 1,
+							p = config.sortProperty || config.property[0] || config.property,
+							a = a[p] || a,
+							b = b[p] || b;
+						
+						if(a < b) {
+							return -1 * order;
+						}
+						if(a > b) {
+							return 1 * order;
+						}
+						return 0;
+					}
 				},
 				filterJSONLoop = function(json, config) {
 					var errorMsg = null;
@@ -39,7 +67,7 @@
 					if(json && typeof json == "object") {
 						// iterating through each property in the JSON Object
 						$.each(json, function(key, j) {
-							// checking to see if current 'key' is one of the properties
+							// checking to see if current "key" is one of the properties
 							// in the property array passed in the config.
 							if($.inArray(key, config.property) != -1) {
 								var constructReturnObject = function(wrapperValue, plainValue) {
@@ -59,9 +87,9 @@
 								if(config.value) {
 									var valueArray = $.isArray(config.value) ? config.value : [config.value],
 										internalConfig = {},
-										type = Object.prototype.toString.call( j ),
+										type = getObjectType( j ),
 										innerComparo = function(type, originalValue, valueToCompare) {
-											if(type === "[object String]") {
+											if(type === typeMap.STRING) {
 												var originalValueLowerCase = originalValue.toLowerCase(),
 												valueToCompareLowerCase = valueToCompare.toLowerCase();
 												
@@ -80,12 +108,12 @@
 													}
 												}
 											}
-											else if(type === "[object Number]") {
+											else if(type === typeMap.NUMBER) {
 												if(originalValue === parseInt( valueToCompare ) || originalValue === parseFloat( valueToCompare )) {
 													constructReturnObject(json, originalValue);
 												}
 											}
-											else if(type === "[object Boolean]") {
+											else if(type === typeMap.BOOLEAN) {
 												/*
 													Note:
 													Boolean(anyString other than blankString) is true
@@ -93,7 +121,7 @@
 													Boolean(true) is true abd Boolean(false) is false
 												 */
 												var booleanvalueToCompare = false;
-												if(Object.prototype.toString.call( valueToCompare ) === "[object String]") {
+												if(getObjectType( valueToCompare ) === typeMap.STRING) {
 													if(valueToCompare.toLowerCase() == "true") {
 														booleanvalueToCompare = true;
 													}
@@ -102,14 +130,14 @@
 													constructReturnObject(json, originalValue);
 												}
 											}
-											else if(type === "[object Array]") {
+											else if(type === typeMap.ARRAY) {
 												if(originalValue.length > 0) {
 													for(k in originalValue) {
-														innerComparo(Object.prototype.toString.call( originalValue[k] ), originalValue[k], valueToCompare);
+														innerComparo(getObjectType( originalValue[k] ), originalValue[k], valueToCompare);
 													}
 												}
 											}
-											else if(type === "[object Object]") {
+											else if(type === typeMap.OBJECT) {
 												$.extend(internalConfig, config, {value: valueToCompare});
 												filterJSONLoop(originalValue, internalConfig);
 											}
@@ -142,14 +170,15 @@
 				ret = {filteredJSON: []},
 				returnObject = null,
 				filteredJSON = null,
-				prop = null;
+				prop = null,
+				sorted = false;
 
 			// extend the default config with the ones passed in by the user.
 			$.extend(config, _config);
 
 			prop = config.property;
 			// check to see if the property has been passed as a string.
-			if(Object.prototype.toString.call( prop ) === "[object String]") {
+			if(getObjectType( prop ) === typeMap.STRING) {
 				// remove extra spaces if any.
 				prop = prop.replace(/\s/g, "");
 				// convert the input property string into an array.
@@ -172,6 +201,15 @@
 				filteredJSON = returnObject.filteredJSON.length > 0 ? returnObject.filteredJSON : returnObject.filteredJSON[0];
 			}
 
+			if(config.sort && getObjectType( filteredJSON ) === typeMap.ARRAY) {
+				if(config.comparator && getObjectType( config.comparator ) === typeMap.FUNCTION) {
+					if(getObjectType( filteredJSON[0] ) === typeMap.OBJECT) {
+						filteredJSON.sort(config.comparator);
+						sorted = true;
+					}
+				}
+				!sorted && filteredJSON.sort(config.comparator);
+			}
 			return $(filteredJSON);
 		}
 	});

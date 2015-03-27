@@ -62,6 +62,16 @@ This options takes precedence over checkContains if it is set to true.
 
 * avoidDuplicates (optional, default is false): If set to true will avoid duplicate objects.
 
+* sort (optional, default is false): If set to true will return sorted values.
+
+* sortOrder (optional, default is 'asc'): If sorting is set to true then the default sort order is ascending described by 'asc' value. If you want your sort order to be descending change this value to 'desc' or
+for the matter of fact anything else other than 'asc'.
+
+* sortProperty (optional, default is null): The key to be used to sort the objects if sorting is set to true. If not provided then the required property 'property' would be used. In case multiple properties are
+given, the first one will be used.
+
+* comparator (optional, default is compare function): A comparator function used for sorting. This is completely optional but can be provided by the user.
+
 ### Known Issues
 
 For this plugin to work in IE7 and below, you will have to include JSON2.
