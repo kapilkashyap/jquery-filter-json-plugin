@@ -15,7 +15,9 @@ $.fn.filterJSON({ json object }, {
 	                    checkContains: false,
 	                    startsWith: true,
 	                    matchCase: false,
-	                    avoidDuplicates: true
+	                    avoidDuplicates: true,
+	                    sort: true,
+	                    sortOrder: "desc"
                     });
 ````
 ### Plugin Properties Explained
