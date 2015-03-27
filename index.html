@@ -4,8 +4,6 @@
     	<meta charset='utf-8' />
     	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
     	<meta name="description" content="jquery-filter-json-plugin : A jQuery utility that allows you to filter a JSON based on properties." />
-
-
     	<title>jquery-filter-json-plugin</title>
     	
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
@@ -22,17 +20,18 @@
 		 *   - http://www.opensource.org/licenses/mit-license.php
 		 *   - http://www.gnu.org/licenses/gpl.html
 		 */
-		(function(e){e.extend(e.fn,{filterJSON:function(t,n){var r={property:null,value:"",wrapper:false,checkContains:false,startsWith:false,matchCase:false,avoidDuplicates:false},i=function(t,n){var r=null;if(e.isEmptyObject(n.property)||!n.property[0]){r="config.property is required to filter the JSON object."}if(!e.isEmptyObject(r)){if(window.console){console.error?console.error(r):console.log(r)}else{alert(r)}return}if(t&&typeof t=="object"){e.each(t,function(r,o){if(e.inArray(r,n.property)!=-1){var u=function(t,r){var i=n.wrapper?t:r;if(n.avoidDuplicates){if(e.inArray(i,s.filteredJSON)==-1){s.filteredJSON.push(i)}}else{s.filteredJSON.push(i)}};if(n.value){var a=e.isArray(n.value)?n.value:[n.value],f={},l=Object.prototype.toString.call(o),c=function(r,s,o){if(r==="[object String]"){var a=s.toLowerCase(),l=o.toLowerCase();if(!n.matchCase){if(a==l||!n.startsWith&&n.checkContains&&a.indexOf(l)!=-1||n.startsWith&&a.indexOf(l)==0){u(t,s)}}else{if(s==o||!n.startsWith&&n.checkContains&&s.indexOf(o)!=-1||n.startsWith&&s.indexOf(o)==0){u(t,s)}}}else if(r==="[object Number]"){if(s===parseInt(o)||s===parseFloat(o)){u(t,s)}}else if(r==="[object Boolean]"){var h=false;if(Object.prototype.toString.call(o)==="[object String]"){if(o.toLowerCase()=="true"){h=true}}if(s===h){u(t,s)}}else if(r==="[object Array]"){if(s.length>0){for(k in s){c(Object.prototype.toString.call(s[k]),s[k],o)}}}else if(r==="[object Object]"){e.extend(f,n,{value:o});i(s,f)}};for(k in a){c(l,o,a[k])}}else{u(t,o)}}i(o,n)})}return s},s={filteredJSON:[]},o=null,u=null,a=null;e.extend(r,n);a=r.property;if(Object.prototype.toString.call(a)==="[object String]"){a=a.replace(/\s/g,"");r.property=a.split(",")}a=null;if(r.wrapper&&r.property&&r.property.length>1&&n.avoidDuplicates==undefined){r.avoidDuplicates=true}o=i(t,r);if(o&&o.filteredJSON){u=o.filteredJSON.length>0?o.filteredJSON:o.filteredJSON[0]}return e(u)}})})(jQuery)
+		!function(e){e.extend(e.fn,{filterJSON:function(r,t){var o={STRING:"[object String]",NUMBER:"[object Number]",BOOLEAN:"[object Boolean]",ARRAY:"[object Array]",OBJECT:"[object Object]",FUNCTION:"[object Function]"},a=function(e){return Object.prototype.toString.call(e)},i={property:null,value:"",wrapper:!1,checkContains:!1,startsWith:!1,matchCase:!1,avoidDuplicates:!1,sort:!1,sortOrder:"asc",sortProperty:null,comparator:function(e,r){var t="asc"!==i.sortOrder?-1:1,o=i.sortProperty||i.property[0]||i.property,e=e[o]||e,r=r[o]||r;return r>e?-1*t:e>r?1*t:0}},n=function(r,t){var i=null;return(e.isEmptyObject(t.property)||!t.property[0])&&(i="config.property is required to filter the JSON object."),e.isEmptyObject(i)?(r&&"object"==typeof r&&e.each(r,function(i,s){if(-1!=e.inArray(i,t.property)){var c=function(r,o){var a=t.wrapper?r:o;t.avoidDuplicates?-1==e.inArray(a,l.filteredJSON)&&l.filteredJSON.push(a):l.filteredJSON.push(a)};if(t.value){var p=e.isArray(t.value)?t.value:[t.value],f={},u=a(s),O=function(i,l,s){if(i===o.STRING){var p=l.toLowerCase(),u=s.toLowerCase();t.matchCase?(l==s||!t.startsWith&&t.checkContains&&-1!=l.indexOf(s)||t.startsWith&&0==l.indexOf(s))&&c(r,l):(p==u||!t.startsWith&&t.checkContains&&-1!=p.indexOf(u)||t.startsWith&&0==p.indexOf(u))&&c(r,l)}else if(i===o.NUMBER)(l===parseInt(s)||l===parseFloat(s))&&c(r,l);else if(i===o.BOOLEAN){var d=!1;a(s)===o.STRING&&"true"==s.toLowerCase()&&(d=!0),l===d&&c(r,l)}else if(i===o.ARRAY){if(l.length>0)for(k in l)O(a(l[k]),l[k],s)}else i===o.OBJECT&&(e.extend(f,t,{value:s}),n(l,f))};if(p.forEach)p.forEach(function(e){O(u,s,e)});else for(k in p)p.hasOwnProperty(k)&&O(u,s,p[k])}else c(r,s)}n(s,t)}),l):void(window.console?console.error?console.error(i):console.log(i):alert(i))},l={filteredJSON:[]},s=null,c=null,p=null,f=!1;return e.extend(i,t),p=i.property,a(p)===o.STRING&&(p=p.replace(/\s/g,""),i.property=p.split(",")),p=null,i.wrapper&&i.property&&i.property.length>1&&void 0==t.avoidDuplicates&&(i.avoidDuplicates=!0),s=n(r,i),s&&s.filteredJSON&&(c=s.filteredJSON.length>0?s.filteredJSON:s.filteredJSON[0]),i.sort&&a(c)===o.ARRAY&&(i.comparator&&a(i.comparator)===o.FUNCTION&&a(c[0])===o.OBJECT&&(c.sort(i.comparator),f=!0),!f&&c.sort(i.comparator)),e(c)}})}(jQuery);
 		</script>
 		<script type="text/javascript" src="assets/sample.json"></script>
-    	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
 		
+    	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 		<style type="text/css">
 			tbody .vertical-align-top { vertical-align: top; }
     		span.required { color: red; }
 			.borderless { border: none; }
     		.input-form { width: 100%; }
+			.input-form-borderless { width: 100%; border: none; }
+			.input-form-borderless td { border: none; }
     		.textArea { width: 98%; height: 200px; }
 			.input-label,.input-label-checkbox { width: 200px; color: #000000; }
 			.input-label { vertical-align: top; padding: 10px 5px 5px 10px; }
@@ -82,7 +81,9 @@
 	<span class="nx">checkContains</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 	<span class="nx">startsWith</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 	<span class="nx">matchCase</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-	<span class="nx">avoidDuplicates</span><span class="o">:</span> <span class="kc">true</span>
+	<span class="nx">avoidDuplicates</span><span class="o">:</span> <span class="kc">true</span>,</span>
+	<span class="nx">sort</span><span class="o">:</span> <span class="kc">true</span>,</span>
+	<span class="nx">sortOrder</span><span class="o">:</span> <span class="kc">'desc'</span>
 <span class="p">});</span>
 </pre>
 </div>
@@ -91,7 +92,7 @@
 
 				<p>Before digging into each property of the plugin lets describe our sample JSON.</p>
 
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><span class="p">[</span>
     <span class="p">{</span>
         <span class="s2">"id"</span><span class="o">:</span> <span class="mi">12345</span><span class="p">,</span>
         <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"User One"</span><span class="p">,</span>
@@ -108,26 +109,8 @@
     <span class="p">.</span>
     <span class="p">.</span>
     <span class="p">.</span>
-<span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
-<!--
-<ul>
-<li><p>property (mandatory, default is null): This options takes an array of the property or properties that you need to filter the JSON with. For the above sample JSON we can have three properties
-id, name and email. So you can have this value set as ["name"] or ["name", "email"]</p></li>
-<li><p>wrapper (optional, default is false): If set to true, it will return an array of the parent object of the matched property else will return an array of value itself.
-For instance if we are filtering the above sample JSON with 'name' property and wrapper is set to true, then an array of all the Objects which 
-have the 'name'property will be returned.
-If the wrapper is set to false, then an array of only the values of the property will be returned. For the above sample JSON
-["User One", "User Two", "User Three"] would be returned.</p></li>
-<li><p>value (optional): An optional value passed in as a string (for a single value match) or as an array to check the matched property value against multiple values.</p></li>
-<li><p>checkContains (optional, default is false): Setting this option to true will check if the matched property's value contains the passed in value. However, passing a value becomes mandatory for this to work.
-This option will be considered only if it is true and startsWith is not set to true.</p></li>
-<li><p>startsWith (optional, default is false): Setting this option to true will check if the matched property's value starts with the passed in value. However, passing a value becomes mandatory for this to work.
-This options takes precedence over checkContains if it is set to true.</p></li>
-<li><p>matchCase (optional, default is false): If set to true will perform case-sensitive search of values.</p></li>
-<li><p>avoidDuplicates (optional, default is false): If set to true will avoid duplicate objects.</p></li>
-</ul>
--->
 <br/>
 				<table>
 					<tr>
@@ -184,6 +167,30 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 						<td>false</td>
 						<td>If set to true will avoid duplicate objects.</td>
 					</tr>
+					<tr>
+						<td>sort</td>
+						<td>boolean</td>
+						<td>false</td>
+						<td>If set to true will return sorted values.</td>
+					</tr>
+					<tr>
+						<td>sortOrder</td>
+						<td>string</td>
+						<td>'asc'</td>
+						<td>If sorting is set to true then the default sort order is ascending described by 'asc' value. If you want your sort order to be descending change this value to 'desc' or for the matter of fact anything else other than 'asc'.</td>
+					</tr>
+					<tr>
+						<td>sortProperty</td>
+						<td>string</td>
+						<td>null</td>
+						<td>The key to be used to sort the objects if sorting is set to true. If not provided then the required property 'property' would be used. In case multiple properties are provided use the first one.</td>
+					</tr>
+					<tr>
+						<td>comparator</td>
+						<td>function</td>
+						<td>function</td>
+						<td>A comparator function used for sorting. This is completely optional but can be provided by the user.</td>
+					</tr>
 				</table>
 <br/>
 				<div id="demo">
@@ -215,8 +222,7 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 							</table>
 						</td>
 						<td class="input-field">
-							<textarea id="json" class="textArea" name="json">
-							</textarea>
+							<textarea id="json" class="textArea" name="json"></textarea>
 						</td>
 					</tr>
 					
@@ -246,14 +252,49 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 					</tr>
 					
 					<tr>
-						<td class="input-label">Settings:</td>
+						<td class="input-label">Matching Criteria:</td>
 						<td class="input-field">
-							<input type="radio" id="isStartsWith" class="" name="searchcriteria" value="" />
+							<input type="radio" id="isStartsWith" class="" name="searchcriteria" value="" checked="checked"/>
 							<span class="input-label-checkbox">Starts With</span>
 							<input type="radio" id="isCheckContains" class="checkbox" name="searchcriteria" value="" />
 							<span class="input-label-checkbox">Check Contains</span>
 							<input type="checkbox" id="isMatchCase" class="checkbox" name="isMatchCase" value="" />
 							<span class="input-label-checkbox">Match Case</span>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="input-label">Sort Settings:</td>
+						<td>
+							<table class="input-form-borderless">
+								<tr>
+									<td class="vertical-align-top">Sort:</td>
+									<td>
+										<input type="checkbox" id="isSortRequired" class="" name="isSortRequired" value="" />
+									</td>
+								</tr>
+								<tr>
+									<td class="vertical-align-top">Sort Order:</td>
+									<td>
+										<select id="sortOrder" name="sortOrder">
+											<option value="asc">Ascending</option>
+											<option value="desc">Descending</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="vertical-align-top">Sort Property:</td>
+									<td>
+										<input type="text" id="sortProperty" name="sortProperty" value="" />
+									</td>
+								</tr>
+								<tr>
+									<td class="vertical-align-top">Sort Comparator:</td>
+									<td>
+										<textarea id="sortComparatorFn" class="textArea" name="sortComparatorFn"/></textarea>
+									</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					
@@ -303,25 +344,34 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 				var startTime = new Date().getTime(),
 					json = $.parseJSON( $( "#json" ).val() ),
 					property = $( "#property" ).val(),
-					avoidDuplicates = $( "#avoidDuplicates" ).is( ":checked" ),
-					wrapper = $( "#wrapper" ).is( ":checked" ),
-					propertyValue = $( "#propertyValue" ).val().trim(),
-					startsWith = $( "#isStartsWith" ).is( ":checked" ),
-					checkContains = $( "#isCheckContains" ).is( ":checked" ),
-					matchCase = $( "#isMatchCase" ).is( ":checked" );
+					propertyValue = $( "#propertyValue" ).val().trim();
 					
 				$( "#filteredJson" ).val( "" );
-				
+
 				try {
 					var config = {
 							property: property.split(","),
-							wrapper: wrapper,
+							wrapper: $( "#wrapper" ).is( ":checked" ),
 							value: propertyValue === "" ? null : propertyValue.split(","),
-							checkContains: checkContains,
-							startsWith: startsWith,
-							matchCase: matchCase,
-							avoidDuplicates: avoidDuplicates
+							checkContains: $( "#isCheckContains" ).is( ":checked" ),
+							startsWith: $( "#isStartsWith" ).is( ":checked" ),
+							matchCase: $( "#isMatchCase" ).is( ":checked" ),
+							avoidDuplicates: $( "#avoidDuplicates" ).is( ":checked" ),
+							sort: $( "#isSortRequired" ).is( ":checked" ),
+							sortOrder: $( "#sortOrder" ).val(),
+							sortProperty: $( "#sortProperty" ).val()
 						},
+						o = null;
+						
+						if($( "#sortComparatorFn" ).val() !== "") {
+							try {
+								config.comparator = eval( "(" + $( "#sortComparatorFn" ).val() + ")" );
+							}
+							catch( e ) {
+								console.error( e.message );
+							}
+						}
+						
 						o = $.fn.filterJSON(json, config).toArray();
 
 					$( "#filteredJson" ).val( (o != null && o.length > 0) ? JSON.stringify( o ) : "" );
@@ -334,17 +384,6 @@ This options takes precedence over checkContains if it is set to true.</p></li>
 			
 			$( "#propertyValue" ).keyup();
 		});
-		/*
-		$( "#propertyValue" ).keyup(function() {
-			if($.trim( $( this ).val() )) {
-				$( ".property-value-actions" ).show();
-			}
-			else {
-				$( ".property-value-actions" ).find( "input:checkbox" ).attr("checked", false);
-				$( ".property-value-actions" ).hide();
-			}
-		});
-		*/
 	</script>
 	
 	<script type="text/javascript">
