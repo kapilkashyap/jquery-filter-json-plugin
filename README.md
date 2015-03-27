@@ -23,7 +23,7 @@ $.fn.filterJSON({ json object }, {
 ### Plugin Properties Explained
 Before digging into each property of the plugin lets describe our sample JSON.
 ````javascript
-{
+[
     {
         "id": 12345,
         "name": "User One",
@@ -40,7 +40,7 @@ Before digging into each property of the plugin lets describe our sample JSON.
     .
     .
     .
-}
+]
 ````
 
 * property (mandatory, default is null): This options takes an array of the property or properties that you need to filter the JSON with. For the above sample JSON we can have three properties
