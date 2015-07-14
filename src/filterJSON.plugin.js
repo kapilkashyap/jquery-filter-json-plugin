@@ -34,12 +34,20 @@
 					sort: false, // sorting is off by default
 					sortOrder: "asc", // "desc" is the other value
 					sortProperty: null, // optional, if this isn't provided then the property provided in the config would be used.
+					sortEmptyString: false,
 					comparator: function(a, b) { // optional, default comparator function for sorting
 						var order = (config.sortOrder !== "asc") ? -1 : 1,
 							p = config.sortProperty || config.property[0] || config.property,
 							a = a[p] || a,
 							b = b[p] || b;
+							
+						a = a.trim();
+						b = b.trim();
 						
+						// Do not consider empty strings while sorting.
+						if(!config.sortEmptyStrings && (a === "" || b === "")) {
+							return 0;
+						}
 						if(a < b) {
 							return -1 * order;
 						}
