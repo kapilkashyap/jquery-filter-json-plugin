@@ -1,0 +1,30 @@
+{
+  "name": "json-filter",
+  "homepage": "http://kapilkashyap.github.com/jquery-filter-json-plugin",
+  "authors": [
+    "Kapil Kashyap <kapil.kashyaps@gmail.com>"
+  ],
+  "description": "A jQuery utility that allows you to filter a JSON based on properties",
+  "main": "src/filterJSON.plugin.js",
+  "keywords": [
+    "json",
+    "filter",
+    "jquery",
+    "plugin"
+  ],
+  "license": [
+    "MIT",
+    "GPL"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+  ,
+  "dependencies": {
+    "jquery": ">=1.6"
+  }
+}
