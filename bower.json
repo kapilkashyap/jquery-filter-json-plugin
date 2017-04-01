@@ -1,5 +1,6 @@
 {
   "name": "json-filter",
+  "version": "0.0.1",
   "homepage": "http://kapilkashyap.github.com/jquery-filter-json-plugin",
   "authors": [
     "Kapil Kashyap <kapil.kashyaps@gmail.com>"
@@ -22,8 +23,7 @@
     "bower_components",
     "test",
     "tests"
-  ]
-  ,
+  ],
   "dependencies": {
     "jquery": ">=1.6"
   }
